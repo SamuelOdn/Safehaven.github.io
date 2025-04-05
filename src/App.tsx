@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
-import { Calendar, Clock, Heart, Mail, MapPin, Menu, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
+import { Calendar, Clock, Mail, MapPin, Menu, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
 import pierres from '../img/pierres.png';
-
+//import banner from '../img/banner.png';
+import dos from '../img/dos.jpg';
+import pied from '../img/pied.jpg';
+import pieds from '../img/pieds.jpg';
+import crane from '../img/crane.jpg';
+import soins from '../img/soins.jpg';
+import IMG11 from '../img/IMG11.png';
+import IMG4 from '../img/IMG4.jpg';
+import IMG31 from '../img/IMG31.png';
+import IMG33 from '../img/IMG33.png';
+import logoshrc from '../img/logoshrc.png';
 // Types
 type MassageService = {
   name: string;
@@ -37,7 +47,7 @@ const services: MassageService[] = [
     description: "Offrez à votre dos une véritable pause avec notre massage relaxant. Idéal pour soulager les tensions musculaires, améliorer la circulation et réduire le stress, ce soin ciblé procure un profond bien-être et une détente immédiate.",
     price: "À partir de 25.000 FCFA",
     duration: "60 min",
-    image: "../img/dos.jpg",
+    image: dos,
     color: "blue",
   },
   {
@@ -45,7 +55,7 @@ const services: MassageService[] = [
     description: "Une expérience apaisante qui aide à libérer les tensions accumulées dans le cuir chevelu, le visage et le cou. Ce soin relaxant favorise la circulation sanguine, réduit le stress et procure une sensation de légèreté et de bien-être.",
     price: "55.000 FCFA",
     duration: "75 min",
-    image: "../img/crane.jpg",
+    image: crane,
     color: "emerald",
   },
   {
@@ -53,7 +63,7 @@ const services: MassageService[] = [
     description: "Utilise des vibrations puissantes pour dénouer les tensions musculaires et stimuler la circulation. Idéal pour les muscles endoloris après l'effort ou pour revitaliser le corps, ce soin énergisant offre une sensation immédiate de légèreté et de bien-être.",
     price: "55.000 FCFA",
     duration: "75 min",
-    image: "../img/pieds.jpg",
+    image: pieds,
     color: "emerald",
   },
   {
@@ -61,7 +71,7 @@ const services: MassageService[] = [
     description: "Procure une détente totale en ciblant des zones réflexes clés. Ce soin relaxant soulage les tensions, stimule la circulation et offre un moment de bien-être profond pour vos pieds et vos mains, souvent mis à l'épreuve au quotidien.",
     price: "35.000 FCFA",
     duration: "75 min", 
-    image: "../img/pied.jpg",
+    image: pied,
     color: "emerald",
   },
   {
@@ -69,7 +79,7 @@ const services: MassageService[] = [
     description: "Conçus pour nourrir, détendre et revitaliser votre peau. Profitez d’une expérience de bien-être unique avec nos gommages, enveloppements, épilation, pédicure et manicure, adaptés à vos besoins pour une peau douce, hydratée et un esprit apaisé.",
     price: "75.000 FCFA",
     duration: "75 min", 
-    image: "../img/soins.jpg",
+    image: soins,
     color: "emerald",
   },
 ];
@@ -175,7 +185,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <img src="../img/logoshrc.png" className="h-10 w-10" />
+              <img src={logoshrc} className="h-10 w-10" />
             </div>
             
             {/* Mobile menu button */}
@@ -216,7 +226,7 @@ function App() {
       {/* Hero Section */}
       <div className="pt-16">
         <div className="relative bg-cover bg-center h-[600px]" style={{
-          backgroundImage: "url('../img/IMG11.png?auto=format&fit=crop&q=80&w=1920')"
+          backgroundImage:`url(${IMG11})`,
         }}>
           <div className="absolute inset-0 bg-black bg-opacity-50" />
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
@@ -322,7 +332,7 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="../img/IMG33.png"
+                src={IMG33} 
                 alt="Blog post"
                 className="w-full h-96 object-cover"
               />
@@ -334,7 +344,7 @@ function App() {
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="../img/IMG31.png"
+                src={IMG31} 
                 alt="Blog post"
                 className="w-full h-96 object-cover"
               />
@@ -346,7 +356,7 @@ function App() {
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
               <img
-                src="../img/IMG4.jpg"
+                src={IMG4} 
                 alt="Blog post"
                 className="w-full h-96 object-cover"
               />
@@ -629,7 +639,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <img src="../img/logoshrc.png" className="h-20 w-20" />
+                <img src={logoshrc} className="h-20 w-20" />
              
               </div>
               <p className="text-gray-400">Votre sanctuaire pour le bien-être et de détente.</p>

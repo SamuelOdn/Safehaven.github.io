@@ -37,7 +37,7 @@ const services: MassageService[] = [
   {
     name: "Massage aux pierres chaudes",
     description: "Combine la chaleur apaisante des pierres volcaniques avec des techniques de massage pour détendre en profondeur les muscles et calmer l'esprit. Idéal pour soulager les tensions et favoriser la circulation, ce soin offre une relaxation intense et un bien-être durable.",
-    price: "À partir de 50.000 FCFA",
+    price: "20.000 FCFA",
     duration: "60 min",
     image: pierres,
     color: "rose",
@@ -45,7 +45,7 @@ const services: MassageService[] = [
   {
     name: "Massage du dos",
     description: "Offrez à votre dos une véritable pause avec notre massage relaxant. Idéal pour soulager les tensions musculaires, améliorer la circulation et réduire le stress, ce soin ciblé procure un profond bien-être et une détente immédiate.",
-    price: "À partir de 25.000 FCFA",
+    price: "25.000 FCFA",
     duration: "60 min",
     image: dos,
     color: "blue",
@@ -53,7 +53,7 @@ const services: MassageService[] = [
   {
     name: "Massage crânien",
     description: "Une expérience apaisante qui aide à libérer les tensions accumulées dans le cuir chevelu, le visage et le cou. Ce soin relaxant favorise la circulation sanguine, réduit le stress et procure une sensation de légèreté et de bien-être.",
-    price: "55.000 FCFA",
+    price: "35.000 FCFA",
     duration: "75 min",
     image: crane,
     color: "emerald",
@@ -61,7 +61,7 @@ const services: MassageService[] = [
   {
     name: "Massage tonique au pistolet",
     description: "Utilise des vibrations puissantes pour dénouer les tensions musculaires et stimuler la circulation. Idéal pour les muscles endoloris après l'effort ou pour revitaliser le corps, ce soin énergisant offre une sensation immédiate de légèreté et de bien-être.",
-    price: "55.000 FCFA",
+    price: "45.000 FCFA",
     duration: "75 min",
     image: pieds,
     color: "emerald",
@@ -69,7 +69,7 @@ const services: MassageService[] = [
   {
     name: "Massage des pieds et des mains",
     description: "Procure une détente totale en ciblant des zones réflexes clés. Ce soin relaxant soulage les tensions, stimule la circulation et offre un moment de bien-être profond pour vos pieds et vos mains, souvent mis à l'épreuve au quotidien.",
-    price: "35.000 FCFA",
+    price: "15.000 FCFA",
     duration: "75 min", 
     image: pied,
     color: "emerald",

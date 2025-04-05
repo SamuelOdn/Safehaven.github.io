@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, Heart, Mail, MapPin, Menu, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
+import pierres from '../img/pierres.png';
 
 // Types
 type MassageService = {
@@ -28,7 +29,7 @@ const services: MassageService[] = [
     description: "Combine la chaleur apaisante des pierres volcaniques avec des techniques de massage pour détendre en profondeur les muscles et calmer l'esprit. Idéal pour soulager les tensions et favoriser la circulation, ce soin offre une relaxation intense et un bien-être durable.",
     price: "À partir de 50.000 FCFA",
     duration: "60 min",
-    image: "../img/pierres.png",
+    image: pierres,
     color: "rose",
   },
   {

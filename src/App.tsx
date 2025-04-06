@@ -1,17 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, Mail, MapPin, Menu, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
+import {Clock, Mail, MapPin, Menu, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
 import pierres from '../img/pierres.png';
 //import banner from '../img/banner.png';
 import dos from '../img/dos.jpg';
 import pied from '../img/pied.jpg';
-import pieds from '../img/pieds.jpg';
+import pistolet from '../img/pistolet.jpg';
+import epilo from '../img/epilo.jpg';
+import pedi from '../img/pedi.jpg';
 import crane from '../img/crane.jpg';
 import soins from '../img/soins.jpg';
+import gomme from '../img/gomme.jpg';
 import IMG11 from '../img/IMG11.png';
 import IMG4 from '../img/IMG4.jpg';
 import IMG31 from '../img/IMG31.png';
 import IMG33 from '../img/IMG33.png';
 import logoshrc from '../img/logoshrc.png';
+import SO from '../img/SO.jpg';
+import EA from '../img/EA.jpg';
+import MA from '../img/MA.png';
+
+
 // Types
 type MassageService = {
   name: string;
@@ -34,10 +42,44 @@ type BookingFormData = {
 
 // Services data
 const services: MassageService[] = [
+
+    {
+        name: "Manucure & Pédicure",
+        description: " Un soin complet pour vos mains et vos pieds. Profitez d’un moment de détente tout en prenant soin de votre beauté. Nos soins incluent le limage, le polissage, l’hydratation et la pose de vernis, pour des mains et des pieds impeccables.",
+        price: "10.000 FCFA",
+        duration: "60 min",
+        image: pedi,
+        color: "Rose",
+     },
+        {
+            name: "Gommage corporel",
+            description: "Un soin exfoliant qui élimine les cellules mortes, laissant votre peau douce et éclatante. Ce gommage revitalisant hydrate et nourrit la peau, tout en favorisant la circulation sanguine pour un teint radieux.",
+            price: "15.000 FCFA",
+            duration: "75 min",
+            image: gomme,
+            color: "emerald",
+        },
+        
+      {
+        name: "Soins du corps",
+        description: "Conçus pour nourrir, détendre et revitaliser votre peau. Profitez d’une expérience de bien-être unique avec nos gommages, enveloppements, épilation, pédicure et manicure, adaptés à vos besoins pour une peau douce, hydratée et un esprit apaisé.",
+        price: "25.000 FCFA",
+        duration: "75 min",
+        image: soins,
+        color: "emerald",
+      },
+      {
+        name: "Epilation",
+        description: "Un soin doux et efficace pour éliminer les poils indésirables. Nos techniques d'épilation garantissent une peau lisse et soyeuse, tout en minimisant les irritations. Idéal pour un look impeccable et une sensation de fraîcheur.",
+        price: "25.000 FCFA",
+        duration: "75 min",
+        image: epilo,
+        color: "emerald",
+      },    
     {
     name: "Massage aux pierres chaudes",
     description: "Combine la chaleur apaisante des pierres volcaniques avec des techniques de massage pour détendre en profondeur les muscles et calmer l'esprit. Idéal pour soulager les tensions et favoriser la circulation, ce soin offre une relaxation intense et un bien-être durable.",
-    price: "20.000 FCFA",
+    price: "25.000 FCFA",
     duration: "60 min",
     image: pierres,
     color: "rose",
@@ -61,9 +103,9 @@ const services: MassageService[] = [
   {
     name: "Massage tonique au pistolet",
     description: "Utilise des vibrations puissantes pour dénouer les tensions musculaires et stimuler la circulation. Idéal pour les muscles endoloris après l'effort ou pour revitaliser le corps, ce soin énergisant offre une sensation immédiate de légèreté et de bien-être.",
-    price: "45.000 FCFA",
+    price: "10.000 FCFA",
     duration: "75 min",
-    image: pieds,
+    image: pistolet,
     color: "emerald",
   },
   {
@@ -74,14 +116,7 @@ const services: MassageService[] = [
     image: pied,
     color: "emerald",
   },
-  {
-    name: "Soins du corps",
-    description: "Conçus pour nourrir, détendre et revitaliser votre peau. Profitez d’une expérience de bien-être unique avec nos gommages, enveloppements, épilation, pédicure et manicure, adaptés à vos besoins pour une peau douce, hydratée et un esprit apaisé.",
-    price: "75.000 FCFA",
-    duration: "75 min",
-    image: soins,
-    color: "emerald",
-  },
+
 ];
 
 // Testimonials data
@@ -90,16 +125,19 @@ const testimonials = [
     name: "Samuel ODUNLAMI",
     text: "L'expérience la plus relaxante que j'ai jamais eue. Lauris est une véritable professionnelle en la matière!",
     role: "Client régulier",
+    image: SO,
   },
   {
       name: "Michael AGBO",
       text: "Safe Haven est devenu mon lieu de prédilection pour soulager le stress. Je le recommande vivement !",
       role: "Client fidèle",
+      image: MA,
   },
   {
       name: "Emma AGOSSOU",
       text: "L'attention portée aux détails et le niveau de soins sont exceptionnels. Un véritable sanctuaire.",
       role: "Nouveau client",
+      image: EA,
   },
 ];
 
@@ -407,6 +445,10 @@ function App() {
                     <div className="grid md:grid-cols-3 gap-8">
                         {testimonials.map((testimonial, index) => (
                             <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+                                <img
+                                    src={testimonial.image} // Placeholder image, replace with actual image if available
+                                    alt={testimonial.name}
+                                    className="w-16 h-16 rounded-full mb-4 mx-auto"/>
                                 <p className="text-gray-600 mb-4">"{testimonial.text}"</p>
                                 <div> 
                                     <p className="text-gray-500 text-sm">⭐⭐⭐⭐⭐</p>
@@ -678,7 +720,7 @@ function App() {
                                             <span>{formData.email}</span>
                                         </div>
                                         <div className="flex justify-between">
-                                            <span className="font-medium">Numéro de Téléhone:</span>
+                                            <span className="font-medium">Numéro de Téléphone:</span>
                                             <span>{formData.phone}</span>
                                         </div>
                                         {formData.notes && (

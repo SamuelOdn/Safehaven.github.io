@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {Clock, Mail, MapPin, Menu, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
 import pierres from '../img/pierres.png';
 //import banner from '../img/banner.png';
-import dos from '../img/dos.jpg';
+import dos from '../img/dos.jpeg';
 import pied from '../img/pied.jpg';
 import pistolet from '../img/pistolet.jpg';
 import epilo from '../img/epilo.jpg';

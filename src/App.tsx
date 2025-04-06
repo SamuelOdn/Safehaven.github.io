@@ -408,9 +408,10 @@ function App() {
                         {testimonials.map((testimonial, index) => (
                             <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
                                 <p className="text-gray-600 mb-4">"{testimonial.text}"</p>
-                                <div>
+                                <div> 
+                                    <p className="text-gray-500 text-sm">⭐⭐⭐⭐⭐</p>
                                     <p className="font-semibold">{testimonial.name}</p>
-                                    <p className="text-gray-500 text-sm">{testimonial.role}</p>
+                                    <p className="text-gray-500 text-end text-sm">{testimonial.role}</p>
                                 </div>
                             </div>
                         ))}

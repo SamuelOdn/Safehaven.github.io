@@ -475,7 +475,7 @@ function App() {
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold mb-2">Avantages du massage régulier</h3>
                                 <p className="text-gray-600">Découvrez comment une massothérapie régulière peut améliorer votre bien-être général...</p>
-                                <a href="#" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</a>
+                                <a href="../BlogArticles/blog1.html" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</a>
                             </div>
                         </div>
                         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -487,7 +487,7 @@ function App() {
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold mb-2">Techniques de soulagement du stress</h3>
                                 <p className="text-gray-600">Apprenez des techniques efficaces pour gérer le stress dans votre vie quotidienne...</p>
-                                <a href="#" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">lire la suite  →</a>
+                                <a href="../BlogArticles/blog2.html" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite  →</a>
                             </div>
                         </div>
                         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -499,7 +499,7 @@ function App() {
                             <div className="p-6">
                                 <h3 className="text-xl font-semibold mb-2">Conseils pour prendre soin de soi</h3>
                                 <p className="text-gray-600">Des pratiques d’auto-soins essentielles pour maintenir votre santé physique et mentale...</p>
-                                <a href="#" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</a>
+                                <a href="../BlogArticles/blog3.html" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</a>
                             </div>
                         </div>
                     </div>

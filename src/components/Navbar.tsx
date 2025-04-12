@@ -47,11 +47,11 @@ function Navbar() {
 
                         {/* Desktop menu */}
                         <div className="hidden md:flex md:items-center md:space-x-8">
-                            <a href="#services" className="text-gray-600 hover:text-rose-600">Nos Services</a>
-                            <a href="#promotions" className="text-gray-600 hover:text-rose-600">Promotions</a>
-                            <a href="#testimonials" className="text-gray-600 hover:text-rose-600">Témoignages</a>
-                            <a href="#blog" className="text-gray-600 hover:text-rose-600">Blog</a>
-                            <a href="#book" className="text-gray-600 hover:text-rose-600">Prendre un RDV</a>
+                            <a href="/#services" className="text-gray-600 hover:text-rose-600">Nos Services</a>
+                            <a href="/#promotions" className="text-gray-600 hover:text-rose-600">Promotions</a>
+                            <a href="/#testimonials" className="text-gray-600 hover:text-rose-600">Témoignages</a>
+                            <a href="/#blog" className="text-gray-600 hover:text-rose-600">Blog</a>
+                            <a href="/#book" className="text-gray-600 hover:text-rose-600">Prendre un RDV</a>
                         </div>
                     </div>
                 </div>
@@ -60,11 +60,11 @@ function Navbar() {
                 {isMenuOpen && (
                     <div ref={mobileMenuRef} className="md:hidden bg-white border-t">
                         <div className="px-2 pt-2 pb-3 space-y-1">
-                            <a href="#services" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Nos Services</a>
-                            <a href="#promotions" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Promotions</a>
-                            <a href="#testimonials" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Témoignages</a>
-                            <a href="#blog" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Blog</a>
-                            <a href="#book" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Prendre un RDV</a>
+                            <a href="/#services" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Nos Services</a>
+                            <a href="/#promotions" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Promotions</a>
+                            <a href="/#testimonials" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Témoignages</a>
+                            <a href="/#blog" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Blog</a>
+                            <a href="/#book" onClick={closeMenu} className="block px-3 py-2 text-gray-600 hover:text-rose-600">Prendre un RDV</a>
                         </div>
                     </div>
                 )}

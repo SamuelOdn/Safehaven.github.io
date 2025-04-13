@@ -1,32 +1,6 @@
-// import { Link } from 'react-router-dom';
-// import IMG33 from '../img/IMG33.png'; // Adjust the path as needed
-
-// function Home() {
-//   return (
-//     <div className="container mx-auto py-8">
-//       <h1 className="text-3xl font-bold text-gray-900 mb-4">Avantages du massage régulier</h1>
-//       <img src={IMG33} alt="Avantages du massage régulier" className="w-full rounded-md shadow-md mb-6" />
-//       <div className="blog-content text-gray-700 leading-relaxed">
-//         <p className="mb-4">Le massage régulier offre de nombreux avantages pour la santé physique et mentale. En plus de détendre les muscles tendus et de soulager les douleurs, il peut également améliorer la circulation sanguine, réduire le stress et l'anxiété, et favoriser un meilleur sommeil.</p>
-//         <p className="mb-4">Intégrer des séances de massage régulières dans votre routine de bien-être peut contribuer significativement à une meilleure qualité de vie. Que vous optiez pour un massage suédois, un massage profond des tissus ou une autre technique, les bienfaits cumulatifs sont indéniables.</p>
-//         <p className="mb-4">Considérez le massage non seulement comme un luxe occasionnel, mais comme un investissement dans votre santé à long terme.</p>
-//       </div>
-//       <div className="navigation flex justify-between mt-8">
-//         <Link to="/blog" className="text-rose-600 hover:text-rose-800">← Retour au blog</Link>
-//         <Link to="/blog/article-2" className="text-rose-600 hover:text-rose-800">Article suivant →</Link>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Home;
-
-
-
-import React, { useState, useEffect, useRef } from 'react';
-import { Clock, Mail, MapPin, Menu, Phone, X, CheckCircle, AlertCircle } from 'lucide-react';
+import React, { useState} from 'react';
+import { Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import pierres from '../img/pierres.png';
-//import banner from '../img/banner.png';
 import dos from '../img/dos.jpeg';
 import pied from '../img/pied.jpg';
 import pistolet from '../img/pistolet.jpg';
@@ -43,7 +17,6 @@ import SO from '../img/SO.jpg';
 import EA from '../img/EA.jpg';
 import MA from '../img/MA.png';
 import { BlogArticleProps } from './BlogArticle';
-import blogImg from './../img/logosh.png'
 import { useNavigate } from 'react-router-dom';
 
 // Types
@@ -81,16 +54,16 @@ const services: MassageService[] = [
     name: "Gommage corporel",
     description: "Un soin exfoliant qui élimine les cellules mortes, laissant votre peau douce et éclatante. Ce gommage revitalisant hydrate et nourrit la peau, tout en favorisant la circulation sanguine pour un teint radieux.",
     price: "15.000 FCFA",
-    duration: "75 min",
+    duration: "45 min",
     image: gomme,
     color: "emerald",
   },
 
   {
-    name: "Soins du corps",
-    description: "Conçus pour nourrir, détendre et revitaliser votre peau. Profitez d’une expérience de bien-être unique avec nos gommages, enveloppements, épilation, pédicure et manicure, adaptés à vos besoins pour une peau douce, hydratée et un esprit apaisé.",
-    price: "25.000 FCFA",
-    duration: "75 min",
+    name: "Soins du visage",
+    description: "Conçus pour nourrir, détendre et revitaliser votre peau. Une expérience bien-être sur mesure qui inclut nettoyage, gommage, masque et hydratation. Idéal pour un teint éclatant et une peau radieuse.",
+    price: "20.000 FCFA",
+    duration: "60 min",
     image: soins,
     color: "emerald",
   },
@@ -98,44 +71,44 @@ const services: MassageService[] = [
     name: "Epilation",
     description: "Un soin doux et efficace pour éliminer les poils indésirables. Nos techniques d'épilation garantissent une peau lisse et soyeuse, tout en minimisant les irritations. Idéal pour un look impeccable et une sensation de fraîcheur.",
     price: "25.000 FCFA",
-    duration: "75 min",
+    duration: "40 min",
     image: epilo,
     color: "emerald",
   },
   {
     name: "Massage aux pierres chaudes",
     description: "Combine la chaleur apaisante des pierres volcaniques avec des techniques de massage pour détendre en profondeur les muscles et calmer l'esprit. Idéal pour soulager les tensions et favoriser la circulation, ce soin offre une relaxation intense et un bien-être durable.",
-    price: "25.000 FCFA",
-    duration: "60 min",
+    price: "30.000 FCFA",
+    duration: "70 min",
     image: pierres,
     color: "rose",
   },
   {
-    name: "Massage du dos",
-    description: "Offrez à votre dos une véritable pause avec notre massage relaxant. Idéal pour soulager les tensions musculaires, améliorer la circulation et réduire le stress, ce soin ciblé procure un profond bien-être et une détente immédiate.",
-    price: "25.000 FCFA",
-    duration: "60 min",
+    name: "Massage ciblé (dos, tête, pieds ou mains)",
+    description: "Un soin personnalisé qui cible les zones de tension spécifiques pour un soulagement rapide et efficace. Que ce soit le dos, la tête, les pieds ou les mains, ce massage vous aide à vous détendre et à retrouver votre énergie.",
+    price: "10.000 FCFA",
+    duration: "30 min",
     image: dos,
     color: "blue",
   },
   {
     name: "Massage crânien",
     description: "Une expérience apaisante qui aide à libérer les tensions accumulées dans le cuir chevelu, le visage et le cou. Ce soin relaxant favorise la circulation sanguine, réduit le stress et procure une sensation de légèreté et de bien-être.",
-    price: "35.000 FCFA",
-    duration: "75 min",
+    price: "15.000 FCFA",
+    duration: "60 min",
     image: crane,
     color: "emerald",
   },
   {
     name: "Massage tonique au pistolet",
     description: "Utilise des vibrations puissantes pour dénouer les tensions musculaires et stimuler la circulation. Idéal pour les muscles endoloris après l'effort ou pour revitaliser le corps, ce soin énergisant offre une sensation immédiate de légèreté et de bien-être.",
-    price: "10.000 FCFA",
-    duration: "75 min",
+    price: "20.000 FCFA",
+    duration: "60 min",
     image: pistolet,
     color: "emerald",
   },
   {
-    name: "Massage des pieds et des mains",
+    name: "Massage des pieds ou des mains",
     description: "Procure une détente totale en ciblant des zones réflexes clés. Ce soin relaxant soulage les tensions, stimule la circulation et offre un moment de bien-être profond pour vos pieds et vos mains, souvent mis à l'épreuve au quotidien.",
     price: "15.000 FCFA",
     duration: "75 min",
@@ -173,19 +146,25 @@ export const blogs: BlogArticleProps[] = [
     index: 1,
     img: IMG33,
     title: "Avantages du massage régulier",
-    content: "Le massage régulier offre de nombreux avantages pour la santé physique et mentale. En plus de détendre les muscles tendus et de soulager les douleurs, il peut également améliorer la circulation sanguine, réduire le stress et l'anxiété, et favoriser un meilleur sommeil.Intégrer des séances de massage régulières dans votre routine de bien-être peut contribuer significativement à une meilleure qualité de vie. Que vous optiez pour un massage suédois, un massage profond des tissus ou une autre technique, les bienfaits cumulatifs sont indéniables.Considérez le massage non seulement comme un luxe occasionnel, mais comme un investissement dans votre santé à long terme."
+    content: "Le massage régulier offre de nombreux avantages pour la santé physique et mentale. En plus de détendre les muscles tendus et de soulager les douleurs, il peut également améliorer la circulation sanguine, réduire le stress et l'anxiété, et favoriser un meilleur sommeil.",
+    contentP2 :"Intégrer des séances de massage régulières dans votre routine de bien-être peut contribuer significativement à une meilleure qualité de vie. Que vous optiez pour un massage suédois, un massage profond des tissus ou une autre technique, les bienfaits cumulatifs sont indéniables.",
+    contentP3 :"Considérez le massage non seulement comme un luxe occasionnel, mais comme un investissement dans votre santé à long terme."
   },
   {
     index: 2,
     img: IMG31,
     title: "Techniques de soulagement du stress",
-    content: "Le stress est une partie inévitable de la vie, mais il existe de nombreuses techniques efficaces pour le gérer et améliorer votre bien-être. Parmi celles-ci, la méditation de pleine conscience est une pratique puissante qui vous permet de vous concentrer sur le moment présent et de réduire les pensées anxieuses.Les exercices de respiration profonde sont également très utiles pour calmer le système nerveux. Quelques minutes de respiration lente et profonde peuvent faire une différence significative dans votre niveau de stress.N'oubliez pas l'importance de l'activité physique régulière. L'exercice libère des endorphines, qui ont un effet positif sur l'humeur et aident à réduire le stress accumulé."
+    content: "Le stress est une partie inévitable de la vie, mais il existe de nombreuses techniques efficaces pour le gérer et améliorer votre bien-être. Parmi celles-ci, la méditation de pleine conscience est une pratique puissante qui vous permet de vous concentrer sur le moment présent et de réduire les pensées anxieuses.",
+    contentP2:"Les exercices de respiration profonde sont également très utiles pour calmer le système nerveux. Quelques minutes de respiration lente et profonde peuvent faire une différence significative dans votre niveau de stress.N'oubliez pas l'importance de l'activité physique régulière. L'exercice libère des endorphines, qui ont un effet positif sur l'humeur et aident à réduire le stress accumulé.",
+    contentP3: "Enfin, le yoga et le tai-chi sont d'excellentes pratiques pour allier mouvement et méditation, favorisant ainsi la relaxation et la clarté d'esprit."
   },
   {
     index: 3,
     img: IMG4,
     title: "Conseils pour prendre soin de soi",
-    content: "Prendre soin de soi est essentiel pour maintenir une bonne santé physique et mentale. Cela implique d'accorder de l'importance à vos besoins et de pratiquer des activités qui vous nourrissent et vous revitalisent.Assurez-vous d'avoir un sommeil de qualité suffisant. Un repos adéquat est crucial pour la récupération et le bon fonctionnement de votre corps et de votre esprit.Une alimentation équilibrée, riche en fruits, légumes et nutriments essentiels, contribue également à votre bien-être général.Enfin, n'oubliez pas de vous accorder du temps pour des activités que vous aimez, qu'il s'agisse de lire, de passer du temps dans la nature, de pratiquer un hobby ou de vous connecter avec vos proches."
+    content: "Prendre soin de soi est essentiel pour maintenir une bonne santé physique et mentale. Cela implique d'accorder de l'importance à vos besoins et de pratiquer des activités qui vous nourrissent et vous revitalisent.",
+    contentP2:"Assurez-vous d'avoir un sommeil de qualité suffisant. Un repos adéquat est crucial pour la récupération et le bon fonctionnement de votre corps et de votre esprit. Une alimentation équilibrée, riche en fruits, légumes et nutriments essentiels, contribue également à votre bien-être général.",
+    contentP3:"N'oubliez pas de vous accorder du temps pour vous détendre et pratiquer des activités que vous aimez, que ce soit la lecture, la méditation ou simplement passer du temps en nature. Enfin, n'hésitez pas à demander de l'aide ou à consulter un professionnel si vous ressentez le besoin de parler de vos émotions ou de vos préoccupations."
   },
 ]
 
@@ -211,7 +190,7 @@ function Home() {
     notes: "",
   });
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
-  const mobileMenuRef = useRef<HTMLDivElement>(null);
+ // const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const nextService = () => {
     setCurrentServiceIndex((prev) => (prev + 1) % services.length);
@@ -461,7 +440,7 @@ function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">Astuces & Blog</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {
-              blogs.map((item, index) => (
+              blogs.map((item) => (
                 <div className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img
                     src={item.img}
@@ -471,47 +450,11 @@ function Home() {
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2"> {item.title} </h3>
                     <p className="text-gray-600 overflow-hidden text-ellipsis truncate"> {item.content} </p>
-                    <a onClick={(e)=>{e.preventDefault(); viewdetails(item)}} className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</a>
+                    <button onClick={(e)=>{e.preventDefault(); viewdetails(item)}} className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</button>
                   </div>
                 </div>
               ))
             }
-            {/* <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src={IMG33}
-                alt="Blog post"
-                className="w-full h-96 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Avantages du massage régulier</h3>
-                <p className="text-gray-600">Découvrez comment une massothérapie régulière peut améliorer votre bien-être général...</p>
-                <a href="../BlogArticles/blog1.html" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</a>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src={IMG31}
-                alt="Blog post"
-                className="w-full h-96 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Techniques de soulagement du stress</h3>
-                <p className="text-gray-600">Apprenez des techniques efficaces pour gérer le stress dans votre vie quotidienne...</p>
-                <a href="../BlogArticles/blog2.html" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite  →</a>
-              </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src={IMG4}
-                alt="Blog post"
-                className="w-full h-96 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Conseils pour prendre soin de soi</h3>
-                <p className="text-gray-600">Des pratiques d’auto-soins essentielles pour maintenir votre santé physique et mentale...</p>
-                <a href="../BlogArticles/blog3.html" className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</a>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

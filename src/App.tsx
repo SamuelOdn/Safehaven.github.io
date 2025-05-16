@@ -3,13 +3,16 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import BlogArticle from "./pages/BlogArticle";
-import NotFound from "./pages/NotFound";
+import NotFound from "./components/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
 
     return (
         <BrowserRouter>
+            <ScrollToTop />
+            {/* Header */}
             <Navbar />
             <div className="min-h-screen bg-neutral-50">
                 {/* Navigation */}

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import pierres from '../img/pierres.png';
@@ -13,7 +13,7 @@ import gomme from '../img/gomme.jpg';
 import IMG11 from '../img/IMG11.png';
 import Promotions from './Promotions';
 import Testimonials from './Testimonials';
-import { blogs } from './blogData';
+import { BlogArticleProps, blogs } from './blogData';
 import emailjs from '@emailjs/browser';
 
 // Types
@@ -139,7 +139,7 @@ function Home() {
     totalPrice: 0,
   });
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
- // const mobileMenuRef = useRef<HTMLDivElement>(null);
+  // const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const nextService = () => {
     setCurrentServiceIndex((prev) => (prev + 1) % services.length);
@@ -160,7 +160,7 @@ function Home() {
       notes: formData.notes || 'Aucune',
       total: `${totalPrice.toFixed(2)} Fcfa`,
     };
-  
+
     return emailjs.send(
       'service_sgajwla',        // Remplace avec ton service ID
       'template_vk85gxi',       // Remplace avec ton template ID
@@ -168,28 +168,60 @@ function Home() {
       'vmpUD0gddbO_OLT9C'         // Remplace avec ta public key
     );
   };
-  
 
-  const handleBookingSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+
+  //const handleBookingSubmit = async (e: React.FormEvent) => {
+  const handleBookingSubmit = async () => {
+    //e.preventDefault();
     setHasSubmitted(true);
-      // Calcul du prix total
-  const selectedServices = services.filter(service =>
-    formData.service.includes(service.name)
-  );
+    // Calcul du prix total
+    const selectedServices = services.filter(service =>
+      formData.service.includes(service.name)
+    );
 
-  const totalPrice = selectedServices.reduce((acc, service) => {
-    const price = service.price;
-    return acc + (isNaN(price) ? 0 : price);
-  }, 0);
+    const totalPrice = selectedServices.reduce((acc, service) => {
+      const price = service.price;
+      return acc + (isNaN(price) ? 0 : price);
+    }, 0);
 
-    try {
-      await sendEmail(totalPrice); // Envoie l'email avec prix total
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+    // try {
+    //   await sendEmail(totalPrice); // Envoie l'email avec prix total
+    //   // Simulate API call
+    //   await new Promise(resolve => setTimeout(resolve, 1500));
+    //   setBookingSuccess(true);
+    //   setBookingError(false);
+    //   // Reset form after success
+    //   setTimeout(() => {
+    //     setBookingStep(1);
+    //     setFormData({
+    //       service: [],
+    //       date: "",
+    //       time: "",
+    //       name: "",
+    //       email: "",
+    //       phone: "",
+    //       notes: "",
+    //       totalPrice: 0,
+    //     });
+    //     setFieldErrors({});
+    //     setBookingSuccess(false);
+    //     setBookingError(false);
+    //     setHasSubmitted(false);
+    //   }, 5000);
+    // } catch (error) {
+    //   setBookingError(true);
+    //   setBookingSuccess(false);
+    //   console.error('Erreur lors de l’envoi du mail :', error);
+    // }
+
+
+    console.log('Form data saperlipopette:', formData);
+
+    await sendEmail(totalPrice)
+    .then(() => {
       setBookingSuccess(true);
       setBookingError(false);
-      // Reset form after success
+
       setTimeout(() => {
         setBookingStep(1);
         setFormData({
@@ -205,13 +237,15 @@ function Home() {
         setFieldErrors({});
         setBookingSuccess(false);
         setBookingError(false);
-        setHasSubmitted(false); 
-      }, 5000);
-    } catch (error) {
+        setHasSubmitted(false);
+      },  3000);
+    })
+    .catch((error) => {
       setBookingError(true);
       setBookingSuccess(false);
       console.error('Erreur lors de l’envoi du mail :', error);
-    }
+    });
+
   };
 
   const validateStep = (step: number): boolean => {
@@ -273,16 +307,16 @@ function Home() {
     const updatedServices = formData.service.includes(serviceName)
       ? formData.service.filter((name) => name !== serviceName)
       : [...formData.service, serviceName];
-  
+
     const selectedServices = services.filter(service => updatedServices.includes(service.name));
     const totalPrice = selectedServices.reduce((sum, service) => {
       const priceNumber = service.price; // Directly use the number value
       return sum + priceNumber;
     }, 0);
-  
+
     setFormData({ ...formData, service: updatedServices, totalPrice });
   };
-  
+
 
 
   // Get tomorrow's date for min date in date picker
@@ -297,7 +331,7 @@ function Home() {
 
 
   const navigate = useNavigate();
-  const viewdetails = (item : BlogArticleProps) => {
+  const viewdetails = (item: BlogArticleProps) => {
     navigate(`/blog/${item.index}`);
   }
 
@@ -377,8 +411,8 @@ function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">Astuces & Blog</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {
-              blogs.map((item) => (
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              blogs.map((item , index) => (
+                <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img
                     src={item.img}
                     alt="Blog post"
@@ -387,7 +421,7 @@ function Home() {
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2"> {item.title} </h3>
                     <p className="text-gray-600 overflow-hidden text-ellipsis truncate"> {item.content} </p>
-                    <button onClick={(e)=>{e.preventDefault(); viewdetails(item)}} className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</button>
+                    <button onClick={(e) => { e.preventDefault(); viewdetails(item) }} className="text-rose-600 hover:text-rose-700 mt-4 inline-block">Lire la suite →</button>
                   </div>
                 </div>
               ))
@@ -429,7 +463,7 @@ function Home() {
 
           {/* Booking Form */}
           <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-            <form onSubmit={handleBookingSubmit}>
+            <form onSubmit={(e)=> {e.preventDefault();}} /*onSubmit={handleBookingSubmit}*/>
               {/* Step 1: Service Selection */}
               {bookingStep === 1 && (
                 <div className="space-y-4">
@@ -666,9 +700,10 @@ function Home() {
                   </button>
                 ) : (
                   <button
-                    type="submit" 
+                    //type="submit"
                     className="ml-auto px-6 py-2 bg-rose-600 text-white rounded-md hover:bg-rose-700 disabled:opacity-50"
                     disabled={bookingSuccess}
+                    onClick={()=> {handleBookingSubmit()}}
                   >
                     Confirmer
                   </button>

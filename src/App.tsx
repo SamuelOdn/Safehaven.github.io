@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -10,7 +10,7 @@ import ScrollToTop from "./components/ScrollToTop";
 function App() {
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <ScrollToTop />
             {/* Header */}
             <Navbar />
@@ -18,7 +18,6 @@ function App() {
                 {/* Navigation */}
                 <Routes>
                     <Route path="/" element={<Home />} />
-
                     <Route path="/blog/:id" element={<BlogArticle />} />
                     <Route path="/not-found" element={<NotFound />} />
                     <Route path="*" element={<NotFound />} /> {/* catch-all pour les autres erreurs */}
@@ -27,7 +26,7 @@ function App() {
 
             </div>
             <Footer />
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 

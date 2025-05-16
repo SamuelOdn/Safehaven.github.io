@@ -16,10 +16,9 @@ function App() {
             <Navbar />
             <div className="min-h-screen bg-neutral-50">
                 {/* Navigation */}
-
-
                 <Routes>
                     <Route path="/" element={<Home />} />
+
                     <Route path="/blog/:id" element={<BlogArticle />} />
                     <Route path="/not-found" element={<NotFound />} />
                     <Route path="*" element={<NotFound />} /> {/* catch-all pour les autres erreurs */}

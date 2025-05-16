@@ -28,6 +28,7 @@ export const blogs: BlogArticleProps[] = [
     contentP2: "Les exercices de respiration profonde sont également très utiles pour calmer le système nerveux. Quelques minutes de respiration lente et profonde peuvent faire une différence significative dans votre niveau de stress. N'oubliez pas l'importance de l'activité physique régulière. L'exercice libère des endorphines, qui ont un effet positif sur l'humeur et aident à réduire le stress accumulé.",
     contentP3: "Enfin, le yoga et le tai-chi sont d'excellentes pratiques pour allier mouvement et méditation, favorisant ainsi la relaxation et la clarté d'esprit."
   },
+
   {
     index: 3,
     img: IMG4,
@@ -35,5 +36,13 @@ export const blogs: BlogArticleProps[] = [
     content: "Prendre soin de soi est essentiel pour maintenir une bonne santé physique et mentale. Cela implique d'accorder de l'importance à vos besoins et de pratiquer des activités qui vous nourrissent et vous revitalisent.",
     contentP2: "Assurez-vous d'avoir un sommeil de qualité suffisant. Un repos adéquat est crucial pour la récupération et le bon fonctionnement de votre corps et de votre esprit. Une alimentation équilibrée, riche en fruits, légumes et nutriments essentiels, contribue également à votre bien-être général.",
     contentP3: "N'oubliez pas de vous accorder du temps pour vous détendre et pratiquer des activités que vous aimez, que ce soit la lecture, la méditation ou simplement passer du temps en nature. Enfin, n'hésitez pas à demander de l'aide ou à consulter un professionnel si vous ressentez le besoin de parler de vos émotions ou de vos préoccupations."
+  },
+  {
+    index: 4,
+    img: IMG33,
+    title: "L'importance de l'hydratation",
+    content: "L'hydratation est un élément clé de la santé globale. Boire suffisamment d'eau aide à maintenir l'équilibre des fluides dans le corps, régule la température corporelle et favorise une digestion saine.",
+    contentP2: "Il est recommandé de boire au moins 8 verres d'eau par jour, mais cela peut varier en fonction de votre niveau d'activité physique et de votre environnement. N'attendez pas d'avoir soif pour boire, car la soif est souvent un signe que votre corps est déjà déshydraté.",
+    contentP3: "Incorporez des aliments riches en eau dans votre alimentation, comme les fruits et légumes, pour compléter votre apport hydrique. Une bonne hydratation contribue également à une peau éclatante et à une meilleure concentration."
   },
 ];

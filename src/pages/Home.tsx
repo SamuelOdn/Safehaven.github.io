@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import { Clock, CheckCircle, AlertCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import pierres from '../img/pierres.png';
 import dos from '../img/dos.jpeg';
 import pied from '../img/pied.jpg';
@@ -10,15 +11,10 @@ import crane from '../img/crane.jpg';
 import soins from '../img/soins.jpg';
 import gomme from '../img/gomme.jpg';
 import IMG11 from '../img/IMG11.png';
-//import IMG4 from '../img/IMG4.jpg';
-//import IMG31 from '../img/IMG31.png';
-//import IMG33 from '../img/IMG33.png';
-import SO from '../img/SO.jpg';
-import EA from '../img/EA.jpg';
-import MA from '../img/MA.png';
+import Promotions from './Promotions';
+import Testimonials from './Testimonials';
 import { blogs } from './blogData';
 import emailjs from '@emailjs/browser';
-import { useNavigate } from 'react-router-dom';
 
 // Types
 type MassageService = {
@@ -118,28 +114,6 @@ const services: MassageService[] = [
     color: "emerald",
   },
 
-];
-
-// Testimonials data
-const testimonials = [
-  {
-    name: "Samuel ODUNLAMI",
-    text: "L'expérience la plus relaxante que j'ai jamais eue. Lauris est une véritable professionnelle en la matière!",
-    role: "Client régulier",
-    image: SO,
-  },
-  {
-    name: "Michael AGBO",
-    text: "Safe Haven est devenu mon lieu de prédilection pour soulager le stress. Je le recommande vivement !",
-    role: "Client fidèle",
-    image: MA,
-  },
-  {
-    name: "Emma AGOSSOU",
-    text: "L'attention portée aux détails et le niveau de soins sont exceptionnels. Un véritable sanctuaire.",
-    role: "Nouveau client",
-    image: EA,
-  },
 ];
 
 // Available time slots
@@ -393,58 +367,9 @@ function Home() {
       </section>
 
       {/* Promotions Section */}
-      <section id="promotions" className="py-20 bg-rose-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Offres spéciales</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Spécial nouveau client</h3>
-              <p className="text-gray-600 mb-4">Profitez de 15 % de réduction sur votre première séance de massage chez Safe Haven.</p>
-              <a href="https://wa.me/+22996337000?text=Bonjour,+Je+suis+un+nouveau+client+intéressé(e)+par+votre+offre" className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700">
-                Je veux réserver
-              </a>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Forfait massage en couple</h3>
-              <p className="text-gray-600 mb-4">Offrez-vous une expérience de massage relaxante avec un être cher et économisez 10 %.</p>
-              <a href="https://wa.me/+22996337000?text=Bonjour,+Je+suis+intéressé(e)+par+le+forfait+massage+en+couple" className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700">En savoir plus</a>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Abonnement mensuel</h3>
-              <p className="text-gray-600 mb-4">Économisez 15 % sur tous les services grâce à notre programme d’adhésion</p>
-              <a href="https://wa.me/+22996337000?text=Bonjour,+Je+suis+intéressé(e)+par+l'abonnement+mensuel+et+je+désire+en+savoir+plus" className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700">En savoir plus</a>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-xl font-semibold mb-4">Programme de fidélité</h3>
-              <p className="text-gray-600 mb-4">Réservez 5 massages et obtenez le 6ème à moitié prix !</p>
-              <a href="https://wa.me/+22996337000?text=Bonjour,+Je+souhaite+m'inscrire+à+votre+programme+de+fidélité" className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700">S'inscrire</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Ce que disent nos clients</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-                <img
-                  src={testimonial.image} // Placeholder image, replace with actual image if available
-                  alt={testimonial.name}
-                  className="w-16 h-16 rounded-full mb-4 mx-auto" />
-                <p className="text-gray-600 mb-4">"{testimonial.text}"</p>
-                <div>
-                  <p className="text-gray-500 text-sm">⭐⭐⭐⭐⭐</p>
-                  <p className="font-semibold">{testimonial.name}</p>
-                  <p className="text-gray-500 text-end text-sm">{testimonial.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Promotions />
+      {/* Testimonials Section*/}
+      <Testimonials />
 
       {/* Blog Section */}
       <section id="blog" className="py-20 bg-white">

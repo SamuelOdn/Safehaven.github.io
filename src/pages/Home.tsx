@@ -15,6 +15,7 @@ import Promotions from './Promotions';
 import Testimonials from './Testimonials';
 import { BlogArticleProps, blogs } from './blogData';
 import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 
 // Types
 type MassageService = {
@@ -184,67 +185,41 @@ function Home() {
       return acc + (isNaN(price) ? 0 : price);
     }, 0);
 
-    // try {
-    //   await sendEmail(totalPrice); // Envoie l'email avec prix total
-    //   // Simulate API call
-    //   await new Promise(resolve => setTimeout(resolve, 1500));
-    //   setBookingSuccess(true);
-    //   setBookingError(false);
-    //   // Reset form after success
-    //   setTimeout(() => {
-    //     setBookingStep(1);
-    //     setFormData({
-    //       service: [],
-    //       date: "",
-    //       time: "",
-    //       name: "",
-    //       email: "",
-    //       phone: "",
-    //       notes: "",
-    //       totalPrice: 0,
-    //     });
-    //     setFieldErrors({});
-    //     setBookingSuccess(false);
-    //     setBookingError(false);
-    //     setHasSubmitted(false);
-    //   }, 5000);
-    // } catch (error) {
-    //   setBookingError(true);
-    //   setBookingSuccess(false);
-    //   console.error('Erreur lors de l’envoi du mail :', error);
-    // }
-
-
-    console.log('Form data saperlipopette:', formData);
 
     await sendEmail(totalPrice)
-    .then(() => {
-      setBookingSuccess(true);
-      setBookingError(false);
+      .then(() => {
+        Swal.fire({
+          title: "Réservation réussie !",
+          text: "Nous vous enverrons un e-mail de confirmation dans les plus brefs délais.",
+          icon: "success", confirmButtonColor: '#d81b60',
 
-      setTimeout(() => {
-        setBookingStep(1);
-        setFormData({
-          service: [],
-          date: "",
-          time: "",
-          name: "",
-          email: "",
-          phone: "",
-          notes: "",
-          totalPrice: 0,
-        });
-        setFieldErrors({});
-        setBookingSuccess(false);
-        setBookingError(false);
-        setHasSubmitted(false);
-      },  3000);
-    })
-    .catch((error) => {
-      setBookingError(true);
-      setBookingSuccess(false);
-      console.error('Erreur lors de l’envoi du mail :', error);
-    });
+        })
+          .then((result) => {
+            if (result.isConfirmed) {
+              setBookingStep(1);
+              setFormData({
+                service: [],
+                date: "",
+                time: "",
+                name: "",
+                email: "",
+                phone: "",
+                notes: "",
+                totalPrice: 0,
+              });
+            }
+          });
+
+      })
+      .catch((error) => {
+        //console.error('Erreur lors de l’envoi du mail :', error);
+        Swal.fire({
+          title: "Echec de l'envoi !",
+          text: "Réessayez plus tard.",
+          icon: "error",
+          confirmButtonColor: '#d81b60'
+        })
+      });
 
   };
 
@@ -411,7 +386,7 @@ function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">Astuces & Blog</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {
-              blogs.map((item , index) => (
+              blogs.map((item, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
                   <img
                     src={item.img}
@@ -463,7 +438,7 @@ function Home() {
 
           {/* Booking Form */}
           <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-            <form onSubmit={(e)=> {e.preventDefault();}} /*onSubmit={handleBookingSubmit}*/>
+            <form onSubmit={(e) => { e.preventDefault(); }} /*onSubmit={handleBookingSubmit}*/>
               {/* Step 1: Service Selection */}
               {bookingStep === 1 && (
                 <div className="space-y-4">
@@ -658,24 +633,24 @@ function Home() {
                   </div>
 
                   {/* Success Message */}
-                  {hasSubmitted && bookingSuccess && (
+                  {/* {hasSubmitted && bookingSuccess && (
                     <div className="flex items-center p-4 bg-green-50 rounded-lg">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
                       <span className="text-green-700">
                         Réservation réussie ! Nous vous enverrons un e-mail de confirmation dans les plus brefs délais.
                       </span>
                     </div>
-                  )}
+                  )} */}
 
                   {/* Error Message */}
-                  {hasSubmitted && bookingError && (
+                  {/* {hasSubmitted && bookingError && (
                     <div className="flex items-center p-4 bg-red-50 rounded-lg">
                       <AlertCircle className="h-5 w-5 text-red-500 mr-3" />
                       <span className="text-red-700">
                         Un problème s'est produit. Veuillez réessayer.
                       </span>
                     </div>
-                  )}
+                  )} */}
                 </div>
               )}
 
@@ -703,7 +678,7 @@ function Home() {
                     //type="submit"
                     className="ml-auto px-6 py-2 bg-rose-600 text-white rounded-md hover:bg-rose-700 disabled:opacity-50"
                     disabled={bookingSuccess}
-                    onClick={()=> {handleBookingSubmit()}}
+                    onClick={() => { handleBookingSubmit() }}
                   >
                     Confirmer
                   </button>

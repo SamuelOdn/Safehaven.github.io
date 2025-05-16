@@ -10,20 +10,21 @@ import crane from '../img/crane.jpg';
 import soins from '../img/soins.jpg';
 import gomme from '../img/gomme.jpg';
 import IMG11 from '../img/IMG11.png';
-import IMG4 from '../img/IMG4.jpg';
-import IMG31 from '../img/IMG31.png';
-import IMG33 from '../img/IMG33.png';
+//import IMG4 from '../img/IMG4.jpg';
+//import IMG31 from '../img/IMG31.png';
+//import IMG33 from '../img/IMG33.png';
 import SO from '../img/SO.jpg';
 import EA from '../img/EA.jpg';
 import MA from '../img/MA.png';
-import { BlogArticleProps } from './BlogArticle';
+import { blogs } from './blogData';
+import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
 
 // Types
 type MassageService = {
   name: string;
   description: string;
-  price: string;
+  price: number;
   duration: string;
   image: string;
   color: string;
@@ -37,6 +38,7 @@ type BookingFormData = {
   email: string;
   phone: string;
   notes: string;
+  totalPrice: number; // Added totalPrice property
 };
 
 // Services data
@@ -45,7 +47,7 @@ const services: MassageService[] = [
   {
     name: "Manucure & Pédicure",
     description: " Un soin complet pour vos mains et vos pieds. Profitez d’un moment de détente tout en prenant soin de votre beauté. Nos soins incluent le limage, le polissage, l’hydratation et la pose de vernis, pour des mains et des pieds impeccables.",
-    price: "10.000 FCFA",
+    price: 10000,
     duration: "60 min",
     image: pedi,
     color: "Rose",
@@ -53,7 +55,7 @@ const services: MassageService[] = [
   {
     name: "Gommage corporel",
     description: "Un soin exfoliant qui élimine les cellules mortes, laissant votre peau douce et éclatante. Ce gommage revitalisant hydrate et nourrit la peau, tout en favorisant la circulation sanguine pour un teint radieux.",
-    price: "15.000 FCFA",
+    price: 15000,
     duration: "45 min",
     image: gomme,
     color: "emerald",
@@ -62,7 +64,7 @@ const services: MassageService[] = [
   {
     name: "Soins du visage",
     description: "Conçus pour nourrir, détendre et revitaliser votre peau. Une expérience bien-être sur mesure qui inclut nettoyage, gommage, masque et hydratation. Idéal pour un teint éclatant et une peau radieuse.",
-    price: "20.000 FCFA",
+    price: 20000,
     duration: "60 min",
     image: soins,
     color: "emerald",
@@ -70,7 +72,7 @@ const services: MassageService[] = [
   {
     name: "Epilation",
     description: "Un soin doux et efficace pour éliminer les poils indésirables. Nos techniques d'épilation garantissent une peau lisse et soyeuse, tout en minimisant les irritations. Idéal pour un look impeccable et une sensation de fraîcheur.",
-    price: "25.000 FCFA",
+    price: 25000,
     duration: "40 min",
     image: epilo,
     color: "emerald",
@@ -78,7 +80,7 @@ const services: MassageService[] = [
   {
     name: "Massage aux pierres chaudes",
     description: "Combine la chaleur apaisante des pierres volcaniques avec des techniques de massage pour détendre en profondeur les muscles et calmer l'esprit. Idéal pour soulager les tensions et favoriser la circulation, ce soin offre une relaxation intense et un bien-être durable.",
-    price: "30.000 FCFA",
+    price: 30000,
     duration: "70 min",
     image: pierres,
     color: "rose",
@@ -86,7 +88,7 @@ const services: MassageService[] = [
   {
     name: "Massage ciblé (dos, tête, pieds ou mains)",
     description: "Un soin personnalisé qui cible les zones de tension spécifiques pour un soulagement rapide et efficace. Que ce soit le dos, la tête, les pieds ou les mains, ce massage vous aide à vous détendre et à retrouver votre énergie.",
-    price: "10.000 FCFA",
+    price: 10000,
     duration: "30 min",
     image: dos,
     color: "blue",
@@ -94,7 +96,7 @@ const services: MassageService[] = [
   {
     name: "Massage crânien",
     description: "Une expérience apaisante qui aide à libérer les tensions accumulées dans le cuir chevelu, le visage et le cou. Ce soin relaxant favorise la circulation sanguine, réduit le stress et procure une sensation de légèreté et de bien-être.",
-    price: "15.000 FCFA",
+    price: 15000,
     duration: "60 min",
     image: crane,
     color: "emerald",
@@ -102,7 +104,7 @@ const services: MassageService[] = [
   {
     name: "Massage tonique au pistolet",
     description: "Utilise des vibrations puissantes pour dénouer les tensions musculaires et stimuler la circulation. Idéal pour les muscles endoloris après l'effort ou pour revitaliser le corps, ce soin énergisant offre une sensation immédiate de légèreté et de bien-être.",
-    price: "20.000 FCFA",
+    price: 20000,
     duration: "60 min",
     image: pistolet,
     color: "emerald",
@@ -110,7 +112,7 @@ const services: MassageService[] = [
   {
     name: "Massage des pieds ou des mains",
     description: "Procure une détente totale en ciblant des zones réflexes clés. Ce soin relaxant soulage les tensions, stimule la circulation et offre un moment de bien-être profond pour vos pieds et vos mains, souvent mis à l'épreuve au quotidien.",
-    price: "15.000 FCFA",
+    price: 15000,
     duration: "75 min",
     image: pied,
     color: "emerald",
@@ -140,34 +142,6 @@ const testimonials = [
   },
 ];
 
-
-export const blogs: BlogArticleProps[] = [
-  {
-    index: 1,
-    img: IMG33,
-    title: "Avantages du massage régulier",
-    content: "Le massage régulier offre de nombreux avantages pour la santé physique et mentale. En plus de détendre les muscles tendus et de soulager les douleurs, il peut également améliorer la circulation sanguine, réduire le stress et l'anxiété, et favoriser un meilleur sommeil.",
-    contentP2 :"Intégrer des séances de massage régulières dans votre routine de bien-être peut contribuer significativement à une meilleure qualité de vie. Que vous optiez pour un massage suédois, un massage profond des tissus ou une autre technique, les bienfaits cumulatifs sont indéniables.",
-    contentP3 :"Considérez le massage non seulement comme un luxe occasionnel, mais comme un investissement dans votre santé à long terme."
-  },
-  {
-    index: 2,
-    img: IMG31,
-    title: "Techniques de soulagement du stress",
-    content: "Le stress est une partie inévitable de la vie, mais il existe de nombreuses techniques efficaces pour le gérer et améliorer votre bien-être. Parmi celles-ci, la méditation de pleine conscience est une pratique puissante qui vous permet de vous concentrer sur le moment présent et de réduire les pensées anxieuses.",
-    contentP2:"Les exercices de respiration profonde sont également très utiles pour calmer le système nerveux. Quelques minutes de respiration lente et profonde peuvent faire une différence significative dans votre niveau de stress.N'oubliez pas l'importance de l'activité physique régulière. L'exercice libère des endorphines, qui ont un effet positif sur l'humeur et aident à réduire le stress accumulé.",
-    contentP3: "Enfin, le yoga et le tai-chi sont d'excellentes pratiques pour allier mouvement et méditation, favorisant ainsi la relaxation et la clarté d'esprit."
-  },
-  {
-    index: 3,
-    img: IMG4,
-    title: "Conseils pour prendre soin de soi",
-    content: "Prendre soin de soi est essentiel pour maintenir une bonne santé physique et mentale. Cela implique d'accorder de l'importance à vos besoins et de pratiquer des activités qui vous nourrissent et vous revitalisent.",
-    contentP2:"Assurez-vous d'avoir un sommeil de qualité suffisant. Un repos adéquat est crucial pour la récupération et le bon fonctionnement de votre corps et de votre esprit. Une alimentation équilibrée, riche en fruits, légumes et nutriments essentiels, contribue également à votre bien-être général.",
-    contentP3:"N'oubliez pas de vous accorder du temps pour vous détendre et pratiquer des activités que vous aimez, que ce soit la lecture, la méditation ou simplement passer du temps en nature. Enfin, n'hésitez pas à demander de l'aide ou à consulter un professionnel si vous ressentez le besoin de parler de vos émotions ou de vos préoccupations."
-  },
-]
-
 // Available time slots
 const timeSlots = [
   "9:00", "10:00", "11:00", "13:00",
@@ -175,7 +149,7 @@ const timeSlots = [
 ];
 
 function Home() {
-
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   const [bookingStep, setBookingStep] = useState(1);
   const [bookingSuccess, setBookingSuccess] = useState(false);
@@ -188,6 +162,7 @@ function Home() {
     email: "",
     phone: "",
     notes: "",
+    totalPrice: 0,
   });
   const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
  // const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -200,9 +175,42 @@ function Home() {
     setCurrentServiceIndex((prev) => (prev - 1 + services.length) % services.length);
   };
 
+  const sendEmail = async (totalPrice: number) => {
+    const templateParams = {
+      service: formData.service.join(', '),
+      date: formData.date,
+      time: formData.time,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      notes: formData.notes || 'Aucune',
+      total: `${totalPrice.toFixed(2)} Fcfa`,
+    };
+  
+    return emailjs.send(
+      'service_sgajwla',        // Remplace avec ton service ID
+      'template_vk85gxi',       // Remplace avec ton template ID
+      templateParams,
+      'vmpUD0gddbO_OLT9C'         // Remplace avec ta public key
+    );
+  };
+  
+
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setHasSubmitted(true);
+      // Calcul du prix total
+  const selectedServices = services.filter(service =>
+    formData.service.includes(service.name)
+  );
+
+  const totalPrice = selectedServices.reduce((acc, service) => {
+    const price = service.price;
+    return acc + (isNaN(price) ? 0 : price);
+  }, 0);
+
     try {
+      await sendEmail(totalPrice); // Envoie l'email avec prix total
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       setBookingSuccess(true);
@@ -218,13 +226,17 @@ function Home() {
           email: "",
           phone: "",
           notes: "",
+          totalPrice: 0,
         });
         setFieldErrors({});
         setBookingSuccess(false);
-      }, 3000);
+        setBookingError(false);
+        setHasSubmitted(false); 
+      }, 5000);
     } catch (error) {
       setBookingError(true);
       setBookingSuccess(false);
+      console.error('Erreur lors de l’envoi du mail :', error);
     }
   };
 
@@ -284,19 +296,19 @@ function Home() {
   };
 
   const handleServiceChange = (serviceName: string) => {
-    const isChecked = formData.service.includes(serviceName);
-    if (isChecked) {
-      setFormData({
-        ...formData,
-        service: formData.service.filter((s) => s !== serviceName),
-      });
-    } else {
-      setFormData({
-        ...formData,
-        service: [...formData.service, serviceName],
-      });
-    }
+    const updatedServices = formData.service.includes(serviceName)
+      ? formData.service.filter((name) => name !== serviceName)
+      : [...formData.service, serviceName];
+  
+    const selectedServices = services.filter(service => updatedServices.includes(service.name));
+    const totalPrice = selectedServices.reduce((sum, service) => {
+      const priceNumber = service.price; // Directly use the number value
+      return sum + priceNumber;
+    }, 0);
+  
+    setFormData({ ...formData, service: updatedServices, totalPrice });
   };
+  
 
 
   // Get tomorrow's date for min date in date picker
@@ -356,7 +368,7 @@ function Home() {
                             <Clock className="h-5 w-5 text-gray-400 mr-2" />
                             <span>{service.duration}</span>
                           </div>
-                          <span className="text-xl font-bold text-rose-600">{service.price}</span>
+                          <span className="text-xl font-bold text-rose-600">{service.price} Fcfa</span>
                         </div>
                       </div>
                     </div>
@@ -518,7 +530,7 @@ function Home() {
                           <div>
                             <span className="font-semibold text-gray-900 mb-1 block">{service.name}</span>
                             <span className="text-sm text-gray-500 mb-2 block">{service.duration}</span>
-                            <span className="text-rose-600 font-bold block">{service.price}</span>
+                            <span className="text-rose-600 font-bold block">{service.price} Fcfa</span>
                           </div>
                           <div className="ml-2">
                             <input
@@ -674,6 +686,10 @@ function Home() {
                       <span className="font-medium">Numéro de Téléphone:</span>
                       <span>{formData.phone}</span>
                     </div>
+                    <div className="flex justify-between text-rose-600 font-bold">
+                      <span className="font-medium">Prix Total:</span>
+                      <span>{formData.totalPrice} Fcfa</span>
+                    </div>
                     {formData.notes && (
                       <div className="pt-3 border-t">
                         <span className="font-medium block mb-2">Demande additionnelle:</span>
@@ -683,7 +699,7 @@ function Home() {
                   </div>
 
                   {/* Success Message */}
-                  {bookingSuccess && (
+                  {hasSubmitted && bookingSuccess && (
                     <div className="flex items-center p-4 bg-green-50 rounded-lg">
                       <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
                       <span className="text-green-700">
@@ -693,7 +709,7 @@ function Home() {
                   )}
 
                   {/* Error Message */}
-                  {bookingError && (
+                  {hasSubmitted && bookingError && (
                     <div className="flex items-center p-4 bg-red-50 rounded-lg">
                       <AlertCircle className="h-5 w-5 text-red-500 mr-3" />
                       <span className="text-red-700">
@@ -725,7 +741,7 @@ function Home() {
                   </button>
                 ) : (
                   <button
-                    type="submit"
+                    type="submit" 
                     className="ml-auto px-6 py-2 bg-rose-600 text-white rounded-md hover:bg-rose-700 disabled:opacity-50"
                     disabled={bookingSuccess}
                   >

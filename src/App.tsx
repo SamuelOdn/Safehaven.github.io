@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import BlogArticle from "./pages/BlogArticle";
+import NotFound from "./pages/NotFound";
 
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/blog/:id" element={<BlogArticle />} />
+                    <Route path="/not-found" element={<NotFound />} />
+                    <Route path="*" element={<NotFound />} /> {/* catch-all pour les autres erreurs */}
                 </Routes>
                 {/* Footer */}
 

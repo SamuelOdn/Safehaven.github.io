@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { blogs, BlogArticleProps } from './blogData';
 import { useEffect, useState } from 'react';
 import "./../../style.css";
@@ -32,6 +32,21 @@ function BlogArticle() {
     }
   };
 
+
+  const handleAnchorClick = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+};
+
+const navigationtTo = (id: string) => {
+    setTimeout(() => {
+        handleAnchorClick(id)
+    }, 100);
+
+}
+
   if (!currentBlog) return null; // Ou un spinner de chargement
 
   return (
@@ -58,9 +73,9 @@ function BlogArticle() {
           ← Article précédent
         </button>
 
-        <a href="/#blog" className="nav-link text-rose-600 hover:text-rose-800 text-base">
+        <Link to="/" onClick={()=> navigationtTo("blog")} className="nav-link text-rose-600 hover:text-rose-800 text-base">
           Retour à l'accueil
-        </a>
+        </Link>
 
         <button
           onClick={(e) => { e.preventDefault(); nextBlog(); }}
